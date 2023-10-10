@@ -1,5 +1,6 @@
 <?php
-$error= $this->session->flashdata('error');
+$error= $this->session->flashdata('error_password');
+$error_email= $this->session->flashdata('error_email');
 ?>
 
 <!DOCTYPE html>
@@ -21,13 +22,37 @@ $error= $this->session->flashdata('error');
             </div>
             <div class="md:w-1/3 max-w-sm">
                 <div class="text-center md:text-left">
-                    <label class="mr-1 text-xl font-semibold">
+                    <label class="mr-1 text-2xl font-semibold">
                         Sistem Aplikasi Absensi
+                    </label>
+                    <br>
+                    <label class="mr-1 text-xl font-semibold">
+                        Registrasi Karyawan
                     </label>
                 </div>
                 <div class="my-5 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300"></div>
-                <form action="<?php echo base_url('auth/aksi_login') ?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('auth/aksi_register_karyawan') ?>" enctype="multipart/form-data"
                         method="post">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstName" class="sr-only">Nama Depan</label>
+                            <div class="relative mb-6">
+                                <input type="text" id="firstName" name="nama_depan" class="w-full rounded-lg border p-4 pr-12 text-sm shadow-sm" placeholder="Nama Depan" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="lastName" class="sr-only">Nama Belakang</label>
+                            <div class="relative mb-6">
+                                <input type="text" id="lastName" name="nama_belakang" class="w-full rounded-lg border p-4 pr-12 text-sm shadow-sm" placeholder="Nama Belakang" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="username" class="sr-only">Username</label>
+                        <div class="relative mb-6">
+                            <input type="text" id="username" name="username" class="w-full rounded-lg border p-4 pr-12 text-sm shadow-sm" placeholder="Username" required>
+                        </div>
+                    </div>
                     <div>
                         <label class="sr-only">Email</label>
                         <div class="relative mb-6">
@@ -67,15 +92,26 @@ $error= $this->session->flashdata('error');
     });
   });
   var error = "<?php echo $error; ?>";
+  var error_email = "<?php echo $error_email; ?>";
   if (error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Kesalahan!!',
-                text: "Password atau email tidak valid!!",
+                text: "Password harus memiliki minimal 8 karakter!!",
                 showConfirmButton: false,
                 timer: 2000
             });
         }
+
+    if(error_email){
+        Swal.fire({
+                icon: 'error',
+                title: 'Kesalahan!!',
+                text: "Email sudah digunakan tolong gunakan email yang lain",
+                showConfirmButton: false,
+                timer: 2000
+            });
+    }
 </script>
   </body>
 </html>

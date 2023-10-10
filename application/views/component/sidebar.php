@@ -119,17 +119,17 @@
     <hr />
     <nav data-dev-hint="main navigation">
       <a
-      href="<?php echo base_url('dashboard')?>"
+      href="<?php echo base_url('karyawan/history')?>"
         class="flex items-center py-2 text-white px-4 transition duration-300 hover:bg-rose-700 no-underline gap-2"
         activeclass="active"
       >
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 icoon" viewBox="0 0 512 512">
         <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
     </svg>
-        <span class="font-semibold text-lg">History</span>
+        <span class="font-semibold text-lg">History Absen</span>
       </a>
       <a
-      href="<?php echo base_url('dashboard')?>"
+      href="<?php echo base_url('karyawan/absen')?>"
         class="flex items-center py-2 text-white px-4 transition duration-300 hover:bg-rose-700 no-underline gap-2"
         activeclass="active"
       >
@@ -158,11 +158,14 @@
       <svg class="w-6 h-6 icoon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
         <span class="font-semibold text-lg">Profile</span>
       </a>
+      <div class="m-12 ml-14 mt-[40vh] text-2xl ">
+          <span id="current-time"></span>
+      </div>
     </nav>
   </div>
 
-  <nav
-    onClick={logout}
+  <button
+  onclick="logout()"
     class="flex items-center py-2 text-white px-4 transition duration-300 hover:bg-rose-700 no-underline gap-2 cursor-pointer"
     data-dev-hint="second-main-navigation or footer navigation"
 >
@@ -174,8 +177,9 @@
         <path d="M160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96C43 32 0 75 0 128V384c0 53 43 96 96 96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H96c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32h64zM504.5 273.4c4.8-4.5 7.5-10.8 7.5-17.4s-2.7-12.9-7.5-17.4l-144-136c-7-6.6-17.2-8.4-26-4.6s-14.5 12.5-14.5 22v72H192c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32H320v72c0 9.6 5.7 18.2 14.5 22s19 2 26-4.6l144-136z" />
     </svg>
     <span class="font-semibold text-lg">Log out</span>
-</nav>
+</button>
 </aside>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function toggleSidebar() {
         var menuOpen = document.getElementById("menu-open");
@@ -195,11 +199,44 @@
     }
 
     function logout() {
-        // Fungsi logout Anda
-    }
+        Swal.fire({
+     title: 'Apakah Mau Logout?',
+     icon: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     cancelButtonText: 'Batal',
+     confirmButtonText: 'Ya'
+    }).then((result) => {
+   if (result.isConfirmed) {
+    Swal.fire({ 
+    position: 'center',
+    icon: 'success',
+    title: 'Berhasil Logout',
+    showConfirmButton: false,
+    timer: 1500
+  })
+    setTimeout(() => {
+        window.location.href= "<?php echo base_url('auth/logout') ?>" ;
+    }, 1800);
+  }
+})
+      }
 
     // Memanggil toggleSidebar() saat tombol hamburger diklik
     document.getElementById("mobile-menu-button").addEventListener("click", toggleSidebar);
+     // Fungsi untuk mengupdate waktu setiap detik
+     function updateClock() {
+            var currentTime = new Date();
+            var formattedTime = currentTime.toLocaleString();
+            document.getElementById("current-time").innerHTML = formattedTime;
+        }
+
+        // Memanggil fungsi pertama kali
+        updateClock();
+
+        // Mengatur interval untuk memperbarui waktu setiap 1 detik (1000 ms)
+        setInterval(updateClock, 1000);
 </script>
 </body>
 </html>
