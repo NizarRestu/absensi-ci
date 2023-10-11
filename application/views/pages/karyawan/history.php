@@ -35,59 +35,75 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-300">
-                
+              <?php $no = 0;foreach ($history as $row): $no++?>
                   <tr class="whitespace-nowrap">
-                    <td class="px-3 py-4 text-sm text-gray-500">1</td>
+                    <td class="px-3 py-4 text-sm text-gray-500"><?php echo $no?></td>
                     <td class="px-3 py-4">
                       <div class="text-sm text-gray-900">
-                        Nugas
+                      <?php echo $row->kegiatan?>
                       </div>
                     </td>
                     <td class="px-3 py-4">
                       <div class="text-sm text-gray-900">
-                        10-10-2023
+                      <?php echo $row->date?>
                       </div>
                     </td>
                     <td class="px-3 py-4">
                       <div class="text-sm text-gray-900">
-                        09.00
+                      <?php echo $row->jam_masuk?>
                       </div>
                     </td>
                     <td class="px-3 py-4">
                       <div class="text-sm text-gray-900">
-                        15.00
+                      <?php if( $row->jam_pulang == NULL) {
+                        echo '-';
+                      } else{
+                        echo $row->jam_pulang;
+                      }?>
                       </div>
                     </td>
                     <td class="px-3 py-4">
                       <div class="text-sm text-gray-900">
-                       -
+                      <?php echo $row->keterangan_izin?>
                       </div>
                     </td>
                     <td class="flex  px-3 gap-3 py-4 justify-center">
                       <div class="">
-                        <a href="#">
-                          <button class="text-blue-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <a href="<?php echo base_url('karyawan/ubah_absen/').$row->id?>">
+                          <button class="text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
                            </button>
                         </a>
                       </div>
-                      <div>
-                       <button >
-                       <svg  xmlns="http://www.w3.org/2000/svg" class="w-6 h-6"  viewBox="0 0 640 512" stroke="currentColor">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M208 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM123.7 200.5c1-.4 1.9-.8 2.9-1.2l-16.9 63.5c-5.6 21.1-.1 43.6 14.7 59.7l70.7 77.1 22 88.1c4.3 17.1 21.7 27.6 38.8 23.3s27.6-21.7 23.3-38.8l-23-92.1c-1.9-7.8-5.8-14.9-11.2-20.8l-49.5-54 19.3-65.5 9.6 23c4.4 10.6 12.5 19.3 22.8 24.5l26.7 13.3c15.8 7.9 35 1.5 42.9-14.3s1.5-35-14.3-42.9L281 232.7l-15.3-36.8C248.5 154.8 208.3 128 163.7 128c-22.8 0-45.3 4.8-66.1 14l-8 3.5c-32.9 14.6-58.1 42.4-69.4 76.5l-2.6 7.8c-5.6 16.8 3.5 34.9 20.2 40.5s34.9-3.5 40.5-20.2l2.6-7.8c5.7-17.1 18.3-30.9 34.7-38.2l8-3.5zm-30 135.1L68.7 398 9.4 457.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L116.3 441c4.6-4.6 8.2-10.1 10.6-16.1l14.5-36.2-40.7-44.4c-2.5-2.7-4.8-5.6-7-8.6zM550.6 153.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L530.7 224H384c-17.7 0-32 14.3-32 32s14.3 32 32 32H530.7l-25.4 25.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l80-80c12.5-12.5 12.5-32.8 0-45.3l-80-80z"/></svg>
-                       </button>
-                      </div>
+                      <?php
+                      if($row->status == 'done') {
+                        echo '<div>
+                        <button disabled>
+                        <svg  xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-50"  viewBox="0 0 640 512" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M208 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM123.7 200.5c1-.4 1.9-.8 2.9-1.2l-16.9 63.5c-5.6 21.1-.1 43.6 14.7 59.7l70.7 77.1 22 88.1c4.3 17.1 21.7 27.6 38.8 23.3s27.6-21.7 23.3-38.8l-23-92.1c-1.9-7.8-5.8-14.9-11.2-20.8l-49.5-54 19.3-65.5 9.6 23c4.4 10.6 12.5 19.3 22.8 24.5l26.7 13.3c15.8 7.9 35 1.5 42.9-14.3s1.5-35-14.3-42.9L281 232.7l-15.3-36.8C248.5 154.8 208.3 128 163.7 128c-22.8 0-45.3 4.8-66.1 14l-8 3.5c-32.9 14.6-58.1 42.4-69.4 76.5l-2.6 7.8c-5.6 16.8 3.5 34.9 20.2 40.5s34.9-3.5 40.5-20.2l2.6-7.8c5.7-17.1 18.3-30.9 34.7-38.2l8-3.5zm-30 135.1L68.7 398 9.4 457.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L116.3 441c4.6-4.6 8.2-10.1 10.6-16.1l14.5-36.2-40.7-44.4c-2.5-2.7-4.8-5.6-7-8.6zM550.6 153.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L530.7 224H384c-17.7 0-32 14.3-32 32s14.3 32 32 32H530.7l-25.4 25.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l80-80c12.5-12.5 12.5-32.8 0-45.3l-80-80z"/></svg>
+                        </button>
+                       </div>';
+                      } else {
+                        echo '<div>
+                        <button onclick= "pulang('. $row->id .')">
+                        <svg  xmlns="http://www.w3.org/2000/svg" class="w-6 h-6"  viewBox="0 0 640 512" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M208 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM123.7 200.5c1-.4 1.9-.8 2.9-1.2l-16.9 63.5c-5.6 21.1-.1 43.6 14.7 59.7l70.7 77.1 22 88.1c4.3 17.1 21.7 27.6 38.8 23.3s27.6-21.7 23.3-38.8l-23-92.1c-1.9-7.8-5.8-14.9-11.2-20.8l-49.5-54 19.3-65.5 9.6 23c4.4 10.6 12.5 19.3 22.8 24.5l26.7 13.3c15.8 7.9 35 1.5 42.9-14.3s1.5-35-14.3-42.9L281 232.7l-15.3-36.8C248.5 154.8 208.3 128 163.7 128c-22.8 0-45.3 4.8-66.1 14l-8 3.5c-32.9 14.6-58.1 42.4-69.4 76.5l-2.6 7.8c-5.6 16.8 3.5 34.9 20.2 40.5s34.9-3.5 40.5-20.2l2.6-7.8c5.7-17.1 18.3-30.9 34.7-38.2l8-3.5zm-30 135.1L68.7 398 9.4 457.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L116.3 441c4.6-4.6 8.2-10.1 10.6-16.1l14.5-36.2-40.7-44.4c-2.5-2.7-4.8-5.6-7-8.6zM550.6 153.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L530.7 224H384c-17.7 0-32 14.3-32 32s14.3 32 32 32H530.7l-25.4 25.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l80-80c12.5-12.5 12.5-32.8 0-45.3l-80-80z"/></svg>
+                        </button>
+                       </div>';
+                      }
+                      ?>
                       <div class="">
-                        <button class="text-red-400">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <button onclick="hapus(<?php echo $row->id ?>)" class="text-red-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                           </svg>
                         </button>
                      </div>
                     </td>
                   </tr>
+                  <?php endforeach?>
               </tbody>
             </table>
           </div>
@@ -95,7 +111,58 @@
 
       </main>
     </div>
-
+<script>
+  function hapus(id) {
+        Swal.fire({
+     title: 'Apakah Mau Dihapus?',
+     text: "data ini tidak bisa dikembalikan lagi!",
+     icon: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     cancelButtonText: 'Batal',
+     confirmButtonText: 'Ya, hapus!'
+      }).then((result) => {
+    if (result.isConfirmed) {
+    Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Data Terhapus!!',
+    showConfirmButton: false,
+    timer: 1500
+                })
+      setTimeout(() => {
+        window.location.href= "<?php echo base_url('karyawan/hapus/') ?>" + id;
+      }, 1800);
+    }
+    })
+  }
+      function pulang(id) {
+        Swal.fire({
+        title: 'Apakah Mau Pulang?',
+        text: "Pastikan kegiatan sudah dilakukan!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Batal',
+        confirmButtonText: 'Ya, pulang!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Berhasil!!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setTimeout(() => {
+          window.location.href= "<?php echo base_url('karyawan/pulang/') ?>" + id;
+          }, 1800);
+        }
+          })
+      }
+</script>
 </body>
 
 </html>

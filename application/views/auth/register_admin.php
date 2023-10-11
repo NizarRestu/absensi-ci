@@ -27,7 +27,7 @@ $error_email= $this->session->flashdata('error_email');
                     </label>
                     <br>
                     <label class="mr-1 text-xl font-semibold">
-                        Registrasi Karyawan
+                        Registrasi Admin
                     </label>
                 </div>
                 <div class="my-5 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300"></div>
@@ -69,7 +69,7 @@ $error_email= $this->session->flashdata('error_email');
                         </div>
                     </div>
                     <div class="text-center md:text-left">
-                        <button class="mt-4 bg-rose-600 hover:bg-rose-700 px-4 py-2 text-white uppercase rounded text-xs tracking-wider" type="submit">Masuk</button>
+                        <button class="mt-4 bg-rose-600 hover:bg-rose-700 px-4 py-2 text-white uppercase rounded text-xs tracking-wider" type="submit">Daftar</button>
                     </div>
                 </form>
             </div>

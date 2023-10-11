@@ -29,6 +29,9 @@ class M_model extends CI_Model
         $data = $this->db->where($id_column, $id) -> get($table);
         return $data;
     }
-    
+    public function get_history($table, $id_karyawan)
+{
+    return $this->db->where('id_karyawan', $id_karyawan)->get($table);
+}
 
 }

@@ -69,7 +69,7 @@ $error_email= $this->session->flashdata('error_email');
                         </div>
                     </div>
                     <div class="text-center md:text-left">
-                        <button class="mt-4 bg-rose-600 hover:bg-rose-700 px-4 py-2 text-white uppercase rounded text-xs tracking-wider" type="submit">Masuk</button>
+                        <button class="mt-4 bg-rose-600 hover:bg-rose-700 px-4 py-2 text-white uppercase rounded text-xs tracking-wider" type="submit">Daftar</button>
                     </div>
                 </form>
             </div>
