@@ -33,5 +33,46 @@ class M_model extends CI_Model
 {
     return $this->db->where('id_karyawan', $id_karyawan)->get($table);
 }
+    public function get_absen($table, $id_karyawan)
+    {
+    return $this->db->where('id_karyawan', $id_karyawan)
+                    ->where('keterangan_izin', '-')
+                    ->get($table);
+    }
+    public function get_izin($table, $id_karyawan)
+    {
+    return $this->db->where('id_karyawan', $id_karyawan)
+                    ->where('kegiatan', '-')
+                    ->get($table);
+    }
+    public function get_absen_by_tanggal($tanggal, $id_karyawan)
+    {
+    return $this->db->where('id_karyawan', $id_karyawan)
+                    ->where('date', $tanggal)
+                    ->where('keterangan_izin', '-')
+                    ->where('status', 'not')
+                    ->get('absensi');
+    }
+    public function get_izin_by_tanggal($tanggal, $id_karyawan)
+    {
+    return $this->db->where('id_karyawan', $id_karyawan)
+                    ->where('date', $tanggal)
+                    ->where('kegiatan', '-')
+                    ->get('absensi');
+    }
+    public function get_foto_by_id($id)
+    {
+        $this->db->select('image');
+        $this->db->from('user');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+    
+        if ($query->num_rows() > 0) {
+            $result = $query->row();
+            return $result->image;
+        } else {
+            return false;
+        }
+    }
 
 }

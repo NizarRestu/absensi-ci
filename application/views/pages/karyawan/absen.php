@@ -1,3 +1,6 @@
+<?php
+$error= $this->session->flashdata('error');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,5 +32,17 @@
             </div>
         </main>
     </div>
+    <script>
+        var error = "<?php echo $error; ?>";
+  if (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Kesalahan!!',
+                text: "Anda sudah melakukan absen hari ini",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+    </script>
 </body>
 </html>

@@ -20,7 +20,7 @@
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa-solid fa-calendar-days fa-stack-1x fa-inverse"></i>
                 </span>
-                11 Hari
+                <?php echo $jumlah_absen?> Hari
               </div>
             </div>
 
@@ -33,7 +33,7 @@
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa-solid fa-calendar-days fa-stack-1x fa-inverse"></i>
                 </span>
-                2 Hari
+                <?php echo $jumlah_izin?> Hari
               </div>
             </div>
 
@@ -92,7 +92,11 @@
                     </td>
                     <td class="px-3 py-4">
                       <div class="text-sm text-gray-900">
-                      <?php echo $row->jam_masuk?>
+                      <?php if( $row->jam_masuk == NULL) {
+                        echo '-';
+                      } else{
+                        echo $row->jam_masuk;
+                      }?>
                       </div>
                     </td>
                     <td class="px-3 py-4">

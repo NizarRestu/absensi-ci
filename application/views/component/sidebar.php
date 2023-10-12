@@ -106,7 +106,7 @@
 
 <aside
   id="sidebar"
-  class="max-h-screen bg-gray-800 text-gray-100 md:w-64 w-3/4 space-y-6 pt-6 px-0 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-700 ease-in-out md:justify-between md:flex md:flex-col overflow-y-auto"
+  class="max-h-screen bg-gray-800 text-gray-100 md:w-64 w-3/4 space-y-6 pt-6 px-0 absolute z-50 inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-700 ease-in-out md:justify-between md:flex md:flex-col overflow-y-auto"
   data-dev-hint="sidebar; px-0 for frameless; px-2 for visually inset the navigation"
 >
   <div
@@ -159,7 +159,7 @@
         <span class="font-semibold text-lg">Izin</span>
       </a>
       <a
-      href="<?php echo base_url('dashboard')?>"
+      href="<?php echo base_url('karyawan/profile')?>"
         class="flex items-center py-2 text-white px-4 transition duration-300 hover:bg-rose-700 no-underline gap-2"
         activeclass="active"
       >

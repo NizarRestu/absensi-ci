@@ -50,7 +50,11 @@
                     </td>
                     <td class="px-3 py-4">
                       <div class="text-sm text-gray-900">
-                      <?php echo $row->jam_masuk?>
+                      <?php if( $row->jam_masuk == NULL) {
+                        echo '-';
+                      } else{
+                        echo $row->jam_masuk;
+                      }?>
                       </div>
                     </td>
                     <td class="px-3 py-4">
@@ -69,13 +73,26 @@
                     </td>
                     <td class="flex  px-3 gap-3 py-4 justify-center">
                       <div class="">
-                        <a href="<?php echo base_url('karyawan/ubah_absen/').$row->id?>">
+                        <?php
+                        if($row->keterangan_izin == '-') {
+                          echo '<a href="' . base_url('karyawan/ubah_absen/') . $row->id . '">
                           <button class="text-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                           </button>
-                        </a>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                          </button>
+                      </a>';
+                        } else {
+                          echo '<a href="' . base_url('karyawan/ubah_izin/') . $row->id . '">
+             <button class="text-blue-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
+    </button>
+                </a>';
+
+                        }
+                        ?>
                       </div>
                       <?php
                       if($row->status == 'done') {
