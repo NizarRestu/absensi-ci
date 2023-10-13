@@ -36,19 +36,6 @@
                 <?php echo $jumlah_izin?> Hari
               </div>
             </div>
-
-            <!-- <div class="py-2 bg-white shadow border border-gray-900">
-              <p class="text-md text-center font-medium">
-               Total Tanpa Keterangan
-              </p>
-              <div class="text-3xl text-center text-rose-700 font-semibold mb-2">
-                <span class="fa-stack fa-xs">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa-solid fa-calendar-days fa-stack-1x fa-inverse"></i>
-                </span>
-                2 Hari
-              </div>
-            </div> -->
           </div>
 
           <div class="text-center py-2.5 rounded-t-lg mt-4 bg-rose-700 text-white text-xl">

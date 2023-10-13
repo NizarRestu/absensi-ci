@@ -74,5 +74,17 @@ class M_model extends CI_Model
             return false;
         }
     }
-
+    public function get_karyawan($table)
+    {
+    return $this->db->where('role', 'karyawan')
+                    ->get($table);
+    }
+    public function get_bulanan($date)
+    {
+        $this->db->from('absensi');
+        $this->db->where("DATE_FORMAT(absensi.date, '%m') =", $date);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
 }
