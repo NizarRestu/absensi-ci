@@ -23,7 +23,7 @@
                 </div>
                 <form action="<?php echo base_url('admin/rekap_bulanan') ?>" method="post">
                 <div class="flex flex-wrap justify-center col-span-2 gap-2 md:justify-end md:mr-[-20em]">
-                    <select name="bulan" id="bulan" class="custom-select custom-select-md select2 block w-1/2 lg:w-1/6  rounded-md border p-2 text-black">
+                    <select name="bulan" id="bulan" class=" block w-1/2 lg:w-1/6  rounded-md  border-gray-300 text-gray-700 p-2">
                         <option selected>Pilih Bulan</option>
                         <option value="01">Januari</option>
                         <option value="02">Februari</option>
@@ -40,12 +40,20 @@
                     </select>
                 </div>
                 </form>
+                <a
+              href="<?php echo base_url('Admin/export_rekap_bulanan'); ?>"
+                class="py-1 float-end bg-sky-400
+          text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center w-[250px] md:w-[250px] mt-2 md:mt-0"
+              >
+                Export Data
+              </a>
             </div>
             <div class="overflow-x-auto w-full px-4 bg-white rounded-b-lg shadow">
                 <table class="my-4 w-full divide-y divide-gray-300 text-center">
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="px-3 py-2 text-xs text-gray-500">NO</th>
+                            <th class="px-3 py-2 text-xs text-gray-500">NAMA KARYAWAN</th>
                             <th class="px-3 py-2 text-xs text-gray-500">
                                 KEGIATAN
                             </th>
@@ -59,6 +67,7 @@
                         <?php $no = 0;foreach ($data_bulanan  as $row): $no++?>
                         <tr class="whitespace-nowrap">
                             <td class="px-3 py-4 text-sm text-gray-500"><?php echo $no ?></td>
+                            <td class="px-3 py-4 text-sm text-gray-500 uppercase"><?php echo tampil_nama_karawan_byid($row->id_karyawan) ?></td>
                             <td class="px-3 py-4">
                                 <div class="text-sm text-gray-900">
                                     <?php echo $row->kegiatan ?>
