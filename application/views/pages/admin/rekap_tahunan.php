@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
-    <style>
-        .pagination {
+    <title>Rekap Tahunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<style>
+.pagination {
         display: flex;
         justify-content: center;
         gap: 1rem;
@@ -37,45 +42,19 @@ color: #fff;
 }
     </style>
 </head>
+
 <body>
 <div class="relative min-h-screen md:flex" data-dev-hint="container">
-<?php $this->load->view('component/sidebar_admin') ?>
-      <main id="content" class="max-h-screen overflow-y-auto flex-1 p-6 lg:px-8">
+    <?php $this->load->view('component/sidebar_admin')?>
+    <main id="content" class="max-h-screen overflow-y-auto flex-1 p-6 lg:px-8">
         <div class="container mx-auto">
-          <div class="grid gap-6 mb-2 mt-2 md:grid-cols-2">
-            <div class="py-2 bg-white shadow border border-gray-900">
-              <p class="text-md text-center font-medium">
-               TOTAL KARYAWAN
-              </p>
-              <div class="text-3xl text-center text-rose-700 font-semibold mb-2">
-                <span class="fa-stack fa-xs">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa-solid fa-calendar-days fa-stack-1x fa-inverse"></i>
-                </span>
-                <?php echo $karyawan?> Orang
-              </div>
-            </div>
-
-            <div class="py-2 bg-white shadow border border-gray-900">
-              <p class="text-md text-center font-medium">
-              TOTAL ABSEN
-              </p>
-              <div class="text-3xl text-center text-rose-700 font-semibold mb-2">
-                <span class="fa-stack fa-xs">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa-solid fa-calendar-days fa-stack-1x fa-inverse"></i>
-                </span>
-                <?php echo $absen?> Kali
-              </div>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 px-2 md:grid-cols-3 rounded-t-lg py-2.5 bg-rose-700 text-white text-xl">
+            <div class="grid grid-cols-1 px-2 md:grid-cols-3 rounded-t-lg py-2.5 bg-rose-700 text-white text-xl">
                 <div class="flex justify-center mb-2 md:justify-start md:pl-6">
-                    REKAP KESELURUHAN
+                    REKAP TAHUNAN
                 </div>
                 <div class="flex flex-wrap justify-center col-span-2 gap-2 md:justify-end">
               <a
-              href="<?php echo base_url('Admin/export_rekap'); ?>"
+              href="<?php echo base_url('Admin/export_rekap_tahunan'); ?>"
                 class="py-1 float-end bg-sky-400
           text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center w-[250px] md:w-[250px]"
               >
@@ -99,7 +78,7 @@ color: #fff;
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-300">
-                        <?php $no = 0;foreach ($data_keseluruhan  as $row): $no++?>
+                        <?php $no = 0;foreach ($data_tahunan  as $row): $no++?>
                         <tr class="whitespace-nowrap">
                             <td class="px-3 py-4 text-sm text-gray-500"><?php echo $no ?></td>
                             <td class="px-3 py-4 text-sm text-gray-500 uppercase"><?php echo tampil_nama_karawan_byid($row->id_karyawan) ?></td>
@@ -143,10 +122,10 @@ color: #fff;
                 <div class="rounded-b-lg border-t border-gray-200 px-4 py-2">
             <?php echo $links; ?>
                 </div>
-          </div>
+            </div>
         </div>
-      </main>
-    </div>
-
+    </main>
+</div>
 </body>
+
 </html>

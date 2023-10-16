@@ -86,6 +86,55 @@ class M_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function get_bulanan_page($limit, $offset ,$date)
+    {
+        $this->db->where("DATE_FORMAT(absensi.date, '%m') =", $date);
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get('absensi');
+        return $query->result();
+    }
+    public function count_bulanan($date) {
+        $this->db->where("DATE_FORMAT(absensi.date, '%m') =", $date);
+        return $this->db->count_all_results('absensi'); 
+    }
+    public function count_absen() {
+        return $this->db->count_all_results('absensi'); 
+    }
+    public function get_absen_page($limit, $offset)
+    {
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get('absensi');
+        return $query->result();
+    }
+    public function get_tahunan_page($limit, $offset ,$date)
+    {
+        $this->db->where("DATE_FORMAT(absensi.date, '%Y') =", $date);
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get('absensi');
+        return $query->result();
+    }
+    public function count_tahunan($date) {
+        $this->db->where("DATE_FORMAT(absensi.date, '%Y') =", $date);
+        return $this->db->count_all_results('absensi'); 
+    }
+    public function get_tahunan($date)
+    {
+        $this->db->from('absensi');
+        $this->db->where("DATE_FORMAT(absensi.date, '%Y') =", $date);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_harian_page($limit, $offset ,$date)
+    {
+        $this->db->where('date =', $date);
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get('absensi');
+        return $query->result();
+    }
+    public function count_harian($date) {
+        $this->db->where('date =', $date);
+        return $this->db->count_all_results('absensi'); 
+    }
     public function get_harian($date)
     {
     $this->db->from('absensi');
@@ -104,5 +153,53 @@ class M_model extends CI_Model
                           ->group_by('date, id_karyawan, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status')
                           ->get();
         return $query->result_array();
+    }
+    public function get_mingguan_page($limit, $offset)
+    {
+        $this->load->database();
+        $end_date = date('Y-m-d');
+        $start_date = date('Y-m-d', strtotime('-7 days', strtotime($end_date)));        
+        $query = $this->db->select('date, kegiatan,id_karyawan, jam_masuk, jam_pulang, keterangan_izin, status, COUNT(*) AS total_absences')
+                          ->from('absensi')
+                          ->where('date >=', $start_date)
+                          ->where('date <=', $end_date)
+                          ->limit($limit, $offset)
+                          ->group_by('date, id_karyawan, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status')
+                          ->get();
+        return $query->result_array();
+    }
+    public function count_mingguan() {
+        $this->load->database();
+        $end_date = date('Y-m-d');
+        $start_date = date('Y-m-d', strtotime('-7 days', strtotime($end_date)));        
+        $query = $this->db->select('date, kegiatan,id_karyawan, jam_masuk, jam_pulang, keterangan_izin, status, COUNT(*) AS total_absences')
+                          ->from('absensi')
+                          ->where('date >=', $start_date)
+                          ->where('date <=', $end_date)
+                          ->group_by('date, id_karyawan, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status')
+                          ->get();
+        return $this->db->count_all_results(); 
+    }
+    public function count_history($karyawan_id) {
+        $this->db->where('id_karyawan', $karyawan_id);
+        return $this->db->count_all_results('absensi'); 
+    }
+
+    public function get_history_page($limit, $offset, $karyawan_id) {
+        $this->db->where('id_karyawan', $karyawan_id);
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get('absensi'); 
+        return $query->result();
+    }
+    public function count_karyawan() {
+        $this->db->where('role', 'karyawan');
+        return $this->db->count_all_results('user'); 
+    }
+
+    public function get_karyawan_page($limit, $offset) {
+        $this->db->where('role', 'karyawan');
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get('user'); 
+        return $query->result();
     }
 }

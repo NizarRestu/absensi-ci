@@ -7,6 +7,38 @@
     <title>History</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+.pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+}
+
+.pagination a,
+.pagination strong {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius:4px;
+  color: #333;
+}
+
+.pagination a:hover,
+.pagination strong {
+	display: block;
+width: 2rem;
+height: 2rem;
+border: 1px solid #3b82f6; /* Ganti dengan warna sesuai kebutuhan Anda */
+background-color: #3b82f6; /* Ganti dengan warna sesuai kebutuhan Anda */
+text-align: center;
+line-height: 2rem;
+color: #fff;
+}
+    </style>
 </head>
 
 <body>
@@ -123,6 +155,9 @@
                   <?php endforeach?>
               </tbody>
             </table>
+            <div class="rounded-b-lg border-t border-gray-200 px-4 py-2">
+            <?php echo $links; ?>
+                </div>
           </div>
         </div>
 

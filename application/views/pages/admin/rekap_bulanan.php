@@ -9,7 +9,38 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<style>
+        .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+}
 
+.pagination a,
+.pagination strong {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius:4px;
+  color: #333;
+}
+
+.pagination a:hover,
+.pagination strong {
+	display: block;
+width: 2rem;
+height: 2rem;
+border: 1px solid #3b82f6; /* Ganti dengan warna sesuai kebutuhan Anda */
+background-color: #3b82f6; /* Ganti dengan warna sesuai kebutuhan Anda */
+text-align: center;
+line-height: 2rem;
+color: #fff;
+}
+    </style>
 </head>
 
 <body>
@@ -21,32 +52,15 @@
                 <div class="flex justify-center mb-2 md:justify-start md:pl-6">
                     REKAP BULANAN
                 </div>
-                <form action="<?php echo base_url('admin/rekap_bulanan') ?>" method="post">
-                <div class="flex flex-wrap justify-center col-span-2 gap-2 md:justify-end md:mr-[-20em]">
-                    <select name="bulan" id="bulan" class=" block w-1/2 lg:w-1/6  rounded-md  border-gray-300 text-gray-700 p-2">
-                        <option selected>Pilih Bulan</option>
-                        <option value="01">Januari</option>
-                        <option value="02">Februari</option>
-                        <option value="03">Maret</option>
-                        <option value="04">April</option>
-                        <option value="05">Mei</option>
-                        <option value="06">Juni</option>
-                        <option value="07">Juli</option>
-                        <option value="08">Agustus</option>
-                        <option value="09">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
-                    </select>
-                </div>
-                </form>
-                <a
+                <div class="flex flex-wrap justify-center col-span-2 gap-2 md:justify-end">
+              <a
               href="<?php echo base_url('Admin/export_rekap_bulanan'); ?>"
                 class="py-1 float-end bg-sky-400
-          text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center w-[250px] md:w-[250px] mt-2 md:mt-0"
+          text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center w-[250px] md:w-[250px]"
               >
                 Export Data
               </a>
+            </div>
             </div>
             <div class="overflow-x-auto w-full px-4 bg-white rounded-b-lg shadow">
                 <table class="my-4 w-full divide-y divide-gray-300 text-center">
@@ -105,23 +119,14 @@
                         <?php endforeach?>
                     </tbody>
                 </table>
+                <div class="rounded-b-lg border-t border-gray-200 px-4 py-2">
+            <?php echo $links; ?>
+                </div>
+          </div>
             </div>
         </div>
     </main>
 </div>
-
-<script>
- document.addEventListener("DOMContentLoaded", function() {
-    // Add an event listener for the "change" event on the select element
-    var selectElement = document.getElementById('bulan');
-    var formElement = selectElement.form; // Get the parent form
-
-    selectElement.addEventListener('change', function() {
-        formElement.submit(); // Submit the form when the select element changes
-    });
-});
-</script>
-
 </body>
 
 </html>

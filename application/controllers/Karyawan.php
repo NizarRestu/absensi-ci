@@ -8,14 +8,30 @@ class Karyawan extends CI_Controller {
         parent::__construct();
         $this->load->model('m_model');
         $this->load->helper('my_helper');
+        $this->load->library('pagination');
         if ($this->session->userdata('logged_in') != true || $this->session->userdata('role') != 'karyawan') {
             redirect(base_url());
         }
     }
     public function history()
 	{
-        $data['history'] = $this-> m_model->get_history('absensi' , $this->session->userdata('id'))->result();
-		$this->load->view('pages/karyawan/history' , $data);
+        $config = array(
+            'base_url' => site_url('karyawan/history'),
+            'total_rows' => $this->m_model->count_history($this->session->userdata('id')),
+            'per_page' => 10,
+            'num_links' => 4,
+            'use_page_numbers' => TRUE,
+        );
+        $config['full_tag_open'] = '<div class="pagination">';
+        $config['full_tag_close'] = '</div>';
+        
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 1;
+        
+        $data['history'] = $this->m_model->get_history_page($config['per_page'], ($page - 1) * $config['per_page'], $this->session->userdata('id'));
+        $data['links'] = $this->pagination->create_links();
+        
+        $this->load->view('pages/karyawan/history', $data);
 	}
     public function absen()
 	{
@@ -32,7 +48,21 @@ class Karyawan extends CI_Controller {
 	}
     public function dashboard()
 	{
-        $data['absen'] = $this-> m_model->get_history('absensi' , $this->session->userdata('id'))->result();
+        $config = array(
+            'base_url' => site_url('karyawan/dashboard'),
+            'total_rows' => $this->m_model->count_history($this->session->userdata('id')),
+            'per_page' => 5,
+            'num_links' => 4,
+            'use_page_numbers' => TRUE,
+        );
+        $config['full_tag_open'] = '<div class="pagination">';
+        $config['full_tag_close'] = '</div>';
+        
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 1;
+        
+        $data['history'] = $this->m_model->get_history_page($config['per_page'], ($page - 1) * $config['per_page'], $this->session->userdata('id'));
+        $data['links'] = $this->pagination->create_links();
         $data['jumlah_absen'] = $this-> m_model->get_absen('absensi' , $this->session->userdata('id'))->num_rows();
         $data['jumlah_izin'] = $this-> m_model->get_izin('absensi' , $this->session->userdata('id'))->num_rows();
 		$this->load->view('pages/karyawan/dashboard',$data);

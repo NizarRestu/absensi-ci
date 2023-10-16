@@ -14,7 +14,7 @@
 <?php foreach ($karyawan as $users): ?>
     <div class="relative min-h-screen md:flex">
     <?php $this->load->view('component/sidebar_admin')?>
-    <section class=" overflow-y-auto w-11/12 rounded-md shadow-lg bg-white p-6 lg:px-8 container flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
+    <section class=" overflow-y-auto w-10/12 rounded-md shadow-lg bg-white p-6 lg:px-8 container flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
         <div class="md:w-1/3 max-w-sm flex-shrink-0">
             <label class="" for="image" id="imageTrigger">
                 <img src="<?php echo base_url('images/' . $users->image) ?>" class="max-w-full h-auto rounded-lg shadow-md">

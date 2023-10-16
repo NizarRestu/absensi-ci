@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rekap Mingguan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
 </head>
 
 <body>
@@ -47,10 +43,10 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-300">
-                            <?php $no=0; foreach ($absensi as $absen): $no++ ?>
+                            <?php $no=0; foreach ($data_mingguan as $absen): $no++ ?>
                             <tr class="whitespace-nowrap">
                                 <td class="px-3 py-4 text-sm text-gray-500"><?php echo $no ?></td>
-                                <td class="px-3 py-4 text-sm text-gray-500 ueppercase"><?php echo tampil_nama_karawan_byid($absen['id_karyawan']) ?></td>
+                                <td class="px-3 py-4 text-sm text-gray-500 uppercase"><?php echo tampil_nama_karawan_byid($absen['id_karyawan']) ?></td>
                                 <td class="px-3 py-4">
                                     <div class="text-sm text-gray-900">
                                         <?php echo $absen['kegiatan']; ?>
@@ -92,19 +88,6 @@
             </div>
         </main>
     </div>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Add an event listener for the "change" event on the select element
-        var selectElement = document.getElementById('bulan');
-        var formElement = selectElement.form; // Get the parent form
-
-        selectElement.addEventListener('change', function() {
-            formElement.submit(); // Submit the form when the select element changes
-        });
-    });
-    </script>
-
 </body>
 
 </html>

@@ -7,6 +7,38 @@
     <title>Rekap Harian</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <style>
+        .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+}
+
+.pagination a,
+.pagination strong {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius:4px;
+  color: #333;
+}
+
+.pagination a:hover,
+.pagination strong {
+	display: block;
+width: 2rem;
+height: 2rem;
+border: 1px solid #3b82f6; /* Ganti dengan warna sesuai kebutuhan Anda */
+background-color: #3b82f6; /* Ganti dengan warna sesuai kebutuhan Anda */
+text-align: center;
+line-height: 2rem;
+color: #fff;
+}
+    </style>
 </head>
 
 <body>
@@ -18,19 +50,15 @@
                 <div class="flex justify-center mb-2 md:justify-start md:pl-6">
                     REKAP HARIAN
                 </div>
-                <form action="<?php echo base_url('admin/rekap_harian') ?>" method="post">
-                <div class="flex flex-wrap justify-center col-span-2 gap-2 md:justify-end md:mr-[-20em]">
-                    <!-- Add the "id" attribute to the input element -->
-                    <input type="date" id="tanggal" name="tanggal" class="text-black rounded-md border p-2">
-                </div>
-                </form>
-                <a
+                <div class="flex flex-wrap justify-center col-span-2 gap-2 md:justify-end">
+              <a
               href="<?php echo base_url('Admin/export_rekap_harian'); ?>"
-                class=" md:ml-[-4em] 
-          text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 pt-3  text-center w-[250px] md:w-[250px] mt-2 md:mt-0"
+                class="py-1 float-end bg-sky-400
+          text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center w-[250px] md:w-[250px]"
               >
                 Export Data
               </a>
+            </div>
             </div>
             <div class="overflow-x-auto w-full px-4 bg-white rounded-b-lg shadow">
                 <table class="my-4 w-full divide-y divide-gray-300 text-center">
@@ -89,22 +117,14 @@
                         <?php endforeach?>
                     </tbody>
                 </table>
+                <div class="rounded-b-lg border-t border-gray-200 px-4 py-2">
+    <?php echo $links; ?>
+</div>
+
             </div>
         </div>
     </main>
 </div>
-<script>
- document.addEventListener("DOMContentLoaded", function() {
-    // Add an event listener for the "change" event on the select element
-    var selectElement = document.getElementById('tanggal');
-    var formElement = selectElement.form; // Get the parent form
-
-    selectElement.addEventListener('change', function() {
-        formElement.submit(); // Submit the form when the select element changes
-    });
-});
-</script>
-
 </body>
 
 </html>

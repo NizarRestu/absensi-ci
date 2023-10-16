@@ -4,6 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Karyawan</title>
+    <style>
+.pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+}
+
+.pagination a,
+.pagination strong {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius:4px;
+  color: #333;
+}
+
+.pagination a:hover,
+.pagination strong {
+	display: block;
+width: 2rem;
+height: 2rem;
+border: 1px solid #3b82f6; /* Ganti dengan warna sesuai kebutuhan Anda */
+background-color: #3b82f6; /* Ganti dengan warna sesuai kebutuhan Anda */
+text-align: center;
+line-height: 2rem;
+color: #fff;
+}
+    </style>
 </head>
 <body>
 <div class="relative min-h-screen md:flex" data-dev-hint="container">
@@ -64,7 +96,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-300">
-              <?php $no = 0;foreach ($absen as $row): $no++?>
+              <?php $no = 0;foreach ($history as $row): $no++?>
                   <tr class="whitespace-nowrap">
                     <td class="px-3 py-4 text-sm text-gray-500"><?php echo $no?></td>
                     <td class="px-3 py-4">
@@ -104,6 +136,9 @@
                   <?php endforeach?>
               </tbody>
             </table>
+            <div class="rounded-b-lg border-t border-gray-200 px-4 py-2">
+            <?php echo $links; ?>
+                </div>
           </div>
         </div>
       </main>
