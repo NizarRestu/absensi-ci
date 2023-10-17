@@ -63,6 +63,7 @@ color: #fff;
                   <th class="px-3 py-2 text-xs text-gray-500">JAM MASUK</th>
                   <th class="px-3 py-2 text-xs text-gray-500">JAM PULANG</th>
                   <th class="px-3 py-2 text-xs text-gray-500">KETERANGAN IZIN</th>
+                  <th class="px-3 py-2 text-xs text-gray-500">STATUS</th>
                   <th class="px-3 py-2 text-xs text-gray-500">AKSI</th>
                 </tr>
               </thead>
@@ -101,6 +102,11 @@ color: #fff;
                     <td class="px-3 py-4">
                       <div class="text-sm text-gray-900">
                       <?php echo $row->keterangan_izin?>
+                      </div>
+                    </td>
+                    <td class="px-3 py-4">
+                      <div class="text-sm text-gray-900 uppercase">
+                      <?php echo $row->status?>
                       </div>
                     </td>
                     <td class="flex  px-3 gap-3 py-4 justify-center">

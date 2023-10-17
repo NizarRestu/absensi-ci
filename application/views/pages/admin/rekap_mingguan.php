@@ -40,6 +40,7 @@
                                 <th class="px-3 py-2 text-xs text-gray-500">JAM MASUK</th>
                                 <th class="px-3 py-2 text-xs text-gray-500">JAM PULANG</th>
                                 <th class="px-3 py-2 text-xs text-gray-500">KETERANGAN IZIN</th>
+                                <th class="px-3 py-2 text-xs text-gray-500">STATUS</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-300">
@@ -80,6 +81,11 @@
                                         <?php echo $absen['keterangan_izin']; ?>
                                     </div>
                                 </td>
+                                <td class="px-3 py-4">
+                      <div class="text-sm text-gray-900 uppercase">
+                      <?php echo $absen['status']?>
+                      </div>
+                    </td>
                             </tr>
                             <?php endforeach?>
                         </tbody>

@@ -306,7 +306,7 @@ class Admin extends CI_Controller {
         $data = $this->m_model->get_data('absensi')->result();
         
         // Buat objek Spreadsheet
-        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN'];
+        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN' , 'STATUS'];
         $rowIndex = 1;
         foreach ($headers as $header) {
             $sheet->setCellValueByColumnAndRow($rowIndex, 1, $header);
@@ -324,6 +324,7 @@ class Admin extends CI_Controller {
             $jam_masuk = '';
             $jam_pulang = '';
             $izin = ''; 
+            $status = ''; 
             foreach ($rowData as $cellName => $cellData) {
                 if ($cellName == 'kegiatan') {
                    $kegiatan = $cellData;
@@ -345,6 +346,8 @@ class Admin extends CI_Controller {
                     }
                 } elseif ($cellName == 'keterangan_izin') {
                     $izin = $cellData;
+                } elseif ($cellName == 'status') {
+                    $status = $cellData;
                 }
         
                 // Anda juga dapat menambahkan logika lain jika perlu
@@ -361,6 +364,7 @@ class Admin extends CI_Controller {
             $sheet->setCellValueByColumnAndRow(5, $rowIndex, $jam_masuk);
             $sheet->setCellValueByColumnAndRow(6, $rowIndex, $jam_pulang);
             $sheet->setCellValueByColumnAndRow(7, $rowIndex, $izin);
+            $sheet->setCellValueByColumnAndRow(8, $rowIndex, $status);
             $no++;
         
             $rowIndex++;
@@ -404,7 +408,7 @@ class Admin extends CI_Controller {
         $data = $this->m_model->get_bulanan($bulan);
         
         // Buat objek Spreadsheet
-        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN'];
+        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN' ,'STATUS'];
         $rowIndex = 1;
         foreach ($headers as $header) {
             $sheet->setCellValueByColumnAndRow($rowIndex, 1, $header);
@@ -422,6 +426,7 @@ class Admin extends CI_Controller {
             $jam_masuk = '';
             $jam_pulang = '';
             $izin = ''; 
+            $status = ''; 
             foreach ($rowData as $cellName => $cellData) {
                 if ($cellName == 'kegiatan') {
                    $kegiatan = $cellData;
@@ -443,6 +448,8 @@ class Admin extends CI_Controller {
                     }
                 } elseif ($cellName == 'keterangan_izin') {
                     $izin = $cellData;
+                } elseif ($cellName == 'status') {
+                    $status = $cellData;
                 }
         
                 // Anda juga dapat menambahkan logika lain jika perlu
@@ -459,6 +466,7 @@ class Admin extends CI_Controller {
             $sheet->setCellValueByColumnAndRow(5, $rowIndex, $jam_masuk);
             $sheet->setCellValueByColumnAndRow(6, $rowIndex, $jam_pulang);
             $sheet->setCellValueByColumnAndRow(7, $rowIndex, $izin);
+            $sheet->setCellValueByColumnAndRow(8, $rowIndex, $status);
             $no++;
         
             $rowIndex++;
@@ -502,7 +510,7 @@ class Admin extends CI_Controller {
         $data = $this->m_model->get_tahunan($tahun);
         
         // Buat objek Spreadsheet
-        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN'];
+        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN', 'STATUS'];
         $rowIndex = 1;
         foreach ($headers as $header) {
             $sheet->setCellValueByColumnAndRow($rowIndex, 1, $header);
@@ -520,6 +528,7 @@ class Admin extends CI_Controller {
             $jam_masuk = '';
             $jam_pulang = '';
             $izin = ''; 
+            $status = ''; 
             foreach ($rowData as $cellName => $cellData) {
                 if ($cellName == 'kegiatan') {
                    $kegiatan = $cellData;
@@ -541,6 +550,8 @@ class Admin extends CI_Controller {
                     }
                 } elseif ($cellName == 'keterangan_izin') {
                     $izin = $cellData;
+                } elseif ($cellName == 'status') {
+                    $status = $cellData;
                 }
         
                 // Anda juga dapat menambahkan logika lain jika perlu
@@ -557,6 +568,7 @@ class Admin extends CI_Controller {
             $sheet->setCellValueByColumnAndRow(5, $rowIndex, $jam_masuk);
             $sheet->setCellValueByColumnAndRow(6, $rowIndex, $jam_pulang);
             $sheet->setCellValueByColumnAndRow(7, $rowIndex, $izin);
+            $sheet->setCellValueByColumnAndRow(8, $rowIndex, $status);
             $no++;
         
             $rowIndex++;
@@ -600,7 +612,7 @@ class Admin extends CI_Controller {
         $data = $this->m_model->get_harian($tanggal);
         
         // Buat objek Spreadsheet
-        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN'];
+        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN', 'STATUS'];
         $rowIndex = 1;
         foreach ($headers as $header) {
             $sheet->setCellValueByColumnAndRow($rowIndex, 1, $header);
@@ -618,6 +630,7 @@ class Admin extends CI_Controller {
             $jam_masuk = '';
             $jam_pulang = '';
             $izin = ''; 
+            $status = ''; 
             foreach ($rowData as $cellName => $cellData) {
                 if ($cellName == 'kegiatan') {
                    $kegiatan = $cellData;
@@ -639,6 +652,8 @@ class Admin extends CI_Controller {
                     }
                 } elseif ($cellName == 'keterangan_izin') {
                     $izin = $cellData;
+                } elseif ($cellName == 'status') {
+                    $status = $cellData;
                 }
         
                 // Anda juga dapat menambahkan logika lain jika perlu
@@ -655,6 +670,7 @@ class Admin extends CI_Controller {
             $sheet->setCellValueByColumnAndRow(5, $rowIndex, $jam_masuk);
             $sheet->setCellValueByColumnAndRow(6, $rowIndex, $jam_pulang);
             $sheet->setCellValueByColumnAndRow(7, $rowIndex, $izin);
+            $sheet->setCellValueByColumnAndRow(8, $rowIndex, $status);
             $no++;
         
             $rowIndex++;
@@ -697,7 +713,7 @@ class Admin extends CI_Controller {
         $data = $this->m_model->get_mingguan();
         
         // Buat objek Spreadsheet
-        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN'];
+        $headers = ['NO','NAMA KARYAWAN','KEGIATAN','TANGGAL','JAM MASUK', 'JAM PULANG' , 'KETERANGAN IZIN' ,'STATUS'];
         $rowIndex = 1;
         foreach ($headers as $header) {
             $sheet->setCellValueByColumnAndRow($rowIndex, 1, $header);
@@ -715,6 +731,7 @@ class Admin extends CI_Controller {
             $jam_masuk = '';
             $jam_pulang = '';
             $izin = ''; 
+            $status = ''; 
             foreach ($rowData as $cellName => $cellData) {
                 if ($cellName == 'kegiatan') {
                    $kegiatan = $cellData;
@@ -752,6 +769,7 @@ class Admin extends CI_Controller {
             $sheet->setCellValueByColumnAndRow(5, $rowIndex, $jam_masuk);
             $sheet->setCellValueByColumnAndRow(6, $rowIndex, $jam_pulang);
             $sheet->setCellValueByColumnAndRow(7, $rowIndex, $izin);
+            $sheet->setCellValueByColumnAndRow(8, $rowIndex, $status);
             $no++;
         
             $rowIndex++;
