@@ -67,6 +67,7 @@ $error_email= $this->session->flashdata('error_email');
                                 <i class="fa-regular fa-eye-slash"></i>
                             </span>
                         </div>
+                        <p class="text-sm text-rose-700 font-semibold">*Password minimal 8 karakter</p>
                     </div>
                     <div class="text-center md:text-left">
                         <button class="mt-4 bg-rose-600 hover:bg-rose-700 px-4 py-2 text-white uppercase rounded text-xs tracking-wider" type="submit">Daftar</button>

@@ -60,10 +60,19 @@ $error= $this->session->flashdata('message');
             </div>
         </div>
         <div>
-            <label for="password" class="sr-only">Password</label>
+            <label for="password" class="sr-only">Password Lama</label>
             <div class="relative mb-6">
-                <input type="password" name="password" class="w-full rounded-lg border p-4 pr-12 text-sm shadow-sm" placeholder="Password Baru">
+                <input type="password" name="password_lama" class="w-full rounded-lg border p-4 pr-12 text-sm shadow-sm" placeholder="Password Lama">
                 <span class="absolute inset-y-0 right-0 grid place-content-center px-4 cursor-pointer">
+                    <i class="fa-regular fa-eye-slash"></i>
+                </span>
+            </div>
+        </div>
+        <div>
+            <label for="password" class="sr-only">Password Baru</label>
+            <div class="relative mb-6">
+                <input type="password" id="pass_baru" name="password_baru" class="w-full rounded-lg border p-4 pr-12 text-sm shadow-sm" placeholder="Password Baru">
+                <span id="password_baru" class="absolute inset-y-0 right-0 grid place-content-center px-4 cursor-pointer">
                     <i class="fa-regular fa-eye-slash"></i>
                 </span>
             </div>
@@ -144,6 +153,18 @@ $error= $this->session->flashdata('message');
         } else {
             conPassInput.type = 'password';
             toggleConPassButton.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
+        }
+    });
+    const conPassInput2 = document.getElementById('pass_baru');
+    const toggleConPassButton2 = document.getElementById('password_baru');
+
+    toggleConPassButton2.addEventListener('click', function () {
+        if (conPassInput2.type === 'password') {
+            conPassInput2.type = 'text';
+            toggleConPassButton2.innerHTML = '<i class="fa-regular fa-eye"></i>';
+        } else {
+            conPassInput2.type = 'password';
+            toggleConPassButton2.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
         }
     });
     var error = "<?php echo $error; ?>";
