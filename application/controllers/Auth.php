@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
+    //function constructor unutk memanggil model library dan helper
     public function __construct()
     {
         parent::__construct();
@@ -9,19 +10,22 @@ class Auth extends CI_Controller {
 		$this->load->helper('my_helper');
     }
 
-
+    //function tampilan login
 	public function index()
 	{
 		$this->load->view('auth/login');
 	}
+     //function tampilan register karyawan
     public function register_karyawan()
 	{
 		$this->load->view('auth/register_karyawan');
 	}
+     //function tampilan register admin
     public function register_admin()
 	{
 		$this->load->view('auth/register_admin');
 	}
+     //function aksi untuk register karyawan
     public function aksi_register_karyawan()
     {
         $email = $this->input->post('email', true);
@@ -57,6 +61,7 @@ class Auth extends CI_Controller {
         
 
     }
+     //function aksi register admin 
     public function aksi_register_admin()
     {
         $email = $this->input->post('email', true);
@@ -91,6 +96,7 @@ class Auth extends CI_Controller {
         }
     
     }
+     //function aksi login
     public function aksi_login()
     {
         $email = $this->input->post('email', true);
@@ -118,6 +124,7 @@ class Auth extends CI_Controller {
             redirect(base_url());
         }
     }
+     //function aksi logout
 	public function logout()
     {
         $this->session->sess_destroy();

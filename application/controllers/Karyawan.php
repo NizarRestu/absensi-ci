@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Karyawan extends CI_Controller {
 
+    //function constructor unutk memanggil model library dan helper
     public function __construct()
     {
         parent::__construct();
@@ -13,6 +14,7 @@ class Karyawan extends CI_Controller {
             redirect(base_url());
         }
     }
+     //function tampilan history absen beserta pagination
     public function history()
 	{
         $config = array(
@@ -33,19 +35,23 @@ class Karyawan extends CI_Controller {
         
         $this->load->view('pages/karyawan/history', $data);
 	}
+     //function tampilan absen
     public function absen()
 	{
 		$this->load->view('pages/karyawan/absen');
 	}
+     //function tampilan izin
     public function izin()
 	{
 		$this->load->view('pages/karyawan/izin');
 	}
+     //function tampilan profile
     public function profile()
 	{
         $data['user'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('pages/karyawan/profile',$data);
 	}
+     //function tampilan dashboard dan table history absen tanpa aksi
     public function dashboard()
 	{
         $config = array(
@@ -67,6 +73,7 @@ class Karyawan extends CI_Controller {
         $data['jumlah_izin'] = $this-> m_model->get_izin('absensi' , $this->session->userdata('id'))->num_rows();
 		$this->load->view('pages/karyawan/dashboard',$data);
 	}
+     //function aksi absen
     public function aksi_absen()
     {
         $tanggal = date('Y-m-d');
@@ -110,6 +117,7 @@ class Karyawan extends CI_Controller {
             redirect(base_url('karyawan/history'));
         }
     }
+    //function aksi izin
     public function aksi_izin()
     {
         $tanggal = date('Y-m-d');
@@ -151,10 +159,12 @@ class Karyawan extends CI_Controller {
             redirect(base_url('karyawan/history'));
         }
     }
+    //function aksi hapus absen
     public function  hapus($id) {
         $this -> m_model->delete('absensi' , 'id' , $id);
         redirect(base_url('karyawan/history'));
     }
+    //function aksi pulang
     public function pulang($id)
     {
         date_default_timezone_set('Asia/Jakarta');
@@ -166,11 +176,13 @@ class Karyawan extends CI_Controller {
         $this->m_model->update('absensi', $data, array('id'=> $id));
         redirect(base_url('karyawan/history'));
     }
+    //function tampilan ubah absen
     public function ubah_absen($id)
 	{
         $data['absen'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
 		$this->load->view('pages/karyawan/update_absen',$data);
 	}
+    //function aksi ubah absen
     public function aksi_update_absen()
     {
         $data =  [
@@ -185,11 +197,13 @@ class Karyawan extends CI_Controller {
             redirect(base_url('karyawan/ubah_absen/'.$this->input->post('id')));
         }
     }
+    //function tampilan izin
     public function ubah_izin($id)
 	{
         $data['izin'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
 		$this->load->view('pages/karyawan/update_izin',$data);
 	}
+    //function aksi ubah izin
     public function aksi_update_izin()
     {
         $data =  [
@@ -204,6 +218,7 @@ class Karyawan extends CI_Controller {
             redirect(base_url('karyawan/ubah_izin/'.$this->input->post('id')));
         }
     }
+    //function aksi ubah profile
     public function aksi_ubah_profile()
     {
         $foto = $_FILES['image']['name'];
@@ -266,6 +281,7 @@ class Karyawan extends CI_Controller {
            redirect(base_url('karyawan/profile'));
 		}
     }
+    //function aksi hapus foto
     public function hapus_foto()
     {
      $foto= $this->m_model->get_foto_by_id($this->session->userdata('id'));

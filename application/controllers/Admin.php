@@ -6,6 +6,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 class Admin extends CI_Controller {
 
+    //function constructor unutk memanggil model library dan helper
     public function __construct()
     {
         parent::__construct();
@@ -16,11 +17,13 @@ class Admin extends CI_Controller {
             redirect(base_url());
         }
     }
+    // function tampilan profile
     public function profile()
 	{
         $data['user'] = $this->m_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('pages/admin/profile',$data);
 	}
+    //function tampilan karyawan
     public function karyawan()
 	{
         $this->load->library('pagination');
@@ -41,6 +44,7 @@ class Admin extends CI_Controller {
         $data['links'] = $this->pagination->create_links();
 		$this->load->view('pages/admin/karyawan',$data);
 	}
+    //function tampilan rekap bulanan dan pagination
     public function rekap_bulanan()
     {
         $this->load->library('pagination');
@@ -61,6 +65,7 @@ class Admin extends CI_Controller {
         $data['links'] = $this->pagination->create_links();
     $this->load->view('pages/admin/rekap_bulanan', $data);
     }
+    //function tampilan rekap tahunan dan pagination
     public function rekap_tahunan()
     {
         $this->load->library('pagination');
@@ -81,6 +86,7 @@ class Admin extends CI_Controller {
         $data['links'] = $this->pagination->create_links();
     $this->load->view('pages/admin/rekap_tahunan', $data);
     }
+    //function tampilan rekap harian dan pagination
     public function rekap_harian()
     {
         $tanggal = date('Y-m-d');
@@ -100,15 +106,18 @@ class Admin extends CI_Controller {
         $data['links'] = $this->pagination->create_links();
     $this->load->view('pages/admin/rekap_harian', $data);
     }
+    //function tampilan rekap mingguan
     public function rekap_mingguan() {
         $data['data_mingguan'] = $this->m_model->get_mingguan(); 
         $this->load->view('pages/admin/rekap_mingguan',$data);
     }
+    //function tampilan detail karyawan
     public function detail_karyawan($id)
 	{
         $data['karyawan'] = $this-> m_model->get_by_id('user' , 'id', $id)->result();
 		$this->load->view('pages/admin/detail_karyawan',$data);
 	}
+    //function tampilan dashboard dan rekap data keseluruhan
     public function dashboard()
 	{
         $this->load->library('pagination');
@@ -130,6 +139,7 @@ class Admin extends CI_Controller {
         $data['absen'] = $this-> m_model->get_data('absensi')->num_rows();
 		$this->load->view('pages/admin/dashboard',$data);
 	}
+    //function aksi unutk ubah profile
     public function aksi_ubah_profile()
 {
     $foto = $_FILES['image']['name'];
@@ -194,7 +204,7 @@ class Admin extends CI_Controller {
         redirect(base_url('admin/profile'));
     }
 }
-
+//function aksi hapus foto
     public function hapus_foto()
     {
      $foto= $this->m_model->get_foto_by_id($this->session->userdata('id'));
@@ -209,6 +219,7 @@ class Admin extends CI_Controller {
         redirect(base_url('admin/profile'));
      }
     }
+    //function export data karyawan
     public function exportToExcel() {
 
         // Load autoloader Composer
@@ -292,6 +303,7 @@ class Admin extends CI_Controller {
         $writer->save('php://output');
         
     }
+    //function export data rekap absen keseluruhan
     public function export_rekap() {
 
         // Load autoloader Composer
@@ -394,6 +406,7 @@ class Admin extends CI_Controller {
         $writer->save('php://output');
         
     }
+    //function export data rekap absen bulanan
     public function export_rekap_bulanan() {
 
         // Load autoloader Composer
@@ -496,6 +509,7 @@ class Admin extends CI_Controller {
         $writer->save('php://output');
         
     }
+    //function export data rekap absen tahunan
     public function export_rekap_tahunan() {
 
         // Load autoloader Composer
@@ -598,6 +612,7 @@ class Admin extends CI_Controller {
         $writer->save('php://output');
         
     }
+    //function export data rekap absen harian
     public function export_rekap_harian() {
 
         // Load autoloader Composer
@@ -700,6 +715,7 @@ class Admin extends CI_Controller {
         $writer->save('php://output');
         
     }
+    //function export data rekap absen mingguan
     public function export_rekap_mingguan() {
 
         // Load autoloader Composer
