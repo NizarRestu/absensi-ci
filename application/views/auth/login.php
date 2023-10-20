@@ -73,7 +73,7 @@ $error= $this->session->flashdata('error');
                 title: 'Kesalahan!!',
                 text: "Password atau email tidak valid!!",
                 showConfirmButton: false,
-                timer: 2000
+                timer: 3000
             });
         }
 </script>

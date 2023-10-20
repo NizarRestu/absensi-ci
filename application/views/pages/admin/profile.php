@@ -169,12 +169,12 @@ $error= $this->session->flashdata('message');
     });
     var error = "<?php echo $error; ?>";
   if (error) {
-            Swal.fire({
+    Swal.fire({
                 icon: 'error',
                 title: 'Kesalahan!!',
-                text: "Password baru dan konfirmasi password harus sama",
+                text:'<?php echo $error?>',
                 showConfirmButton: false,
-                timer: 2000
+                timer: 3000
             });
         }
 </script>

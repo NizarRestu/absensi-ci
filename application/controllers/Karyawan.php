@@ -223,7 +223,8 @@ class Karyawan extends CI_Controller {
     {
         $foto = $_FILES['image']['name'];
 		$foto_temp = $_FILES['image']['tmp_name'];
-        $password_baru = $this->input->post('password');
+        $password_lama = $this->input->post('password_lama');
+        $password_baru = $this->input->post('password_baru');
         $konfirmasi_password = $this->input->post('con_pass');
         $username = $this->input->post('username');
         $nama_depan = $this->input->post('nama_depan');
@@ -244,13 +245,19 @@ class Karyawan extends CI_Controller {
                    'nama_depan' => $nama_depan,
                    'nama_belakang' => $nama_belakang,
                ];
-               if (!empty($password_baru) && strlen($password_baru) >= 8) {
-                   if ($password_baru === $konfirmasi_password) {
+               $user = $this->m_model->get_by_id('user' , 'id' , $this->session->userdata('id'))->result();
+               if($user->password == md5($password_lama)) {
+                   if (!empty($password_baru) && strlen($password_baru) >= 8) {
+                       if ($password_baru === $konfirmasi_password) {
                        $data['password'] = md5($password_baru);
-                   } else {
-                       $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
-                       redirect(base_url('karyawan/profile'));
-                   }
+                    } else {
+                        $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama dan password minimal 8 karakter');
+                        redirect(base_url('karyawan/profile'));
+                    }
+                }
+               } else {
+                $this->session->set_flashdata('message', 'Password lama tidak sesuai');
+                redirect(base_url('karyawan/profile'));
                }
                $this->session->set_userdata($data);
                $update_result = $this->m_model->update('user', $data, array('id' => $this->session->userdata('id')));
@@ -268,14 +275,20 @@ class Karyawan extends CI_Controller {
                'nama_depan' => $nama_depan,
                'nama_belakang' => $nama_belakang,
            ];
-           if (!empty($password_baru) && strlen($password_baru) >= 8) {
-               if ($password_baru === $konfirmasi_password) {
-                   $data['password'] = md5($password_baru);
+           $user = $this->m_model->get_by_id('user' , 'id' , $this->session->userdata('id'))->result();
+               if($user->password == md5($password_lama)) {
+                   if (!empty($password_baru) && strlen($password_baru) >= 8) {
+                       if ($password_baru === $konfirmasi_password) {
+                       $data['password'] = md5($password_baru);
+                    } else {
+                        $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama dan password minimal 8 karakter');
+                        redirect(base_url('karyawan/profile'));
+                    }
+                }
                } else {
-                   $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
-                   redirect(base_url('karyawan/profile'));
+                $this->session->set_flashdata('message', 'Password lama tidak sesuai');
+                redirect(base_url('karyawan/profile'));
                }
-           }
            $this->session->set_userdata($data);
            $update_result = $this->m_model->update('user', $data, array('id' => $this->session->userdata('id')));
            redirect(base_url('karyawan/profile'));

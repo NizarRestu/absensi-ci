@@ -235,10 +235,13 @@
     document.getElementById("mobile-menu-button").addEventListener("click", toggleSidebar);
      // Fungsi untuk mengupdate waktu setiap detik
      function updateClock() {
-            var currentTime = new Date();
-            var formattedTime = currentTime.toLocaleString();
-            document.getElementById("current-time").innerHTML = formattedTime;
-        }
+    var currentTime = new Date();
+    var options = { timeZone: 'Asia/Jakarta', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    var formattedTime = currentTime.toLocaleString('id-ID', options);
+    var formattedDate = currentTime.toLocaleString('id-ID', { timeZone: 'Asia/Jakarta', year: 'numeric', month: '2-digit', day: '2-digit' });
+    var dateTimeString = formattedDate + ' ' + formattedTime;
+    document.getElementById("current-time").innerHTML = dateTimeString;
+    }
 
         // Memanggil fungsi pertama kali
         updateClock();

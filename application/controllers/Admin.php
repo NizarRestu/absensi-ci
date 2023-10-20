@@ -165,16 +165,20 @@ class Admin extends CI_Controller {
                 'nama_depan' => $nama_depan,
                 'nama_belakang' => $nama_belakang,
             ];
-            
-            if (!empty($password_baru) && strlen($password_baru) >= 8) {
-                if ($password_baru === $konfirmasi_password) {
-                    $data['password'] = md5($password_baru);
-                } else {
-                    $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
-                    redirect(base_url('admin/profile'));
+            $user = $this->m_model->get_by_id('user' , 'id' , $this->session->userdata('id'))->result();
+               if($user->password == md5($password_lama)) {
+                   if (!empty($password_baru) && strlen($password_baru) >= 8) {
+                       if ($password_baru === $konfirmasi_password) {
+                       $data['password'] = md5($password_baru);
+                    } else {
+                        $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama dan password minimal 8 karakter');
+                        redirect(base_url('admin/profile'));
+                    }
                 }
-            }
-            
+               } else {
+                $this->session->set_flashdata('message', 'Password lama tidak sesuai');
+                redirect(base_url('admin/profile'));
+               }
             $this->session->set_userdata($data);
             $update_result = $this->m_model->update('user', $data, array('id' => $this->session->userdata('id')));
             redirect(base_url('admin/profile'));
@@ -189,16 +193,20 @@ class Admin extends CI_Controller {
             'nama_depan' => $nama_depan,
             'nama_belakang' => $nama_belakang,
         ];
-        
-        if (!empty($password_baru) && strlen($password_baru) >= 8) {
-            if ($password_baru === $konfirmasi_password) {
+        $user = $this->m_model->get_by_id('user' , 'id' , $this->session->userdata('id'))->result();
+        if($user->password == md5($password_lama)) {
+            if (!empty($password_baru) && strlen($password_baru) >= 8) {
+                if ($password_baru === $konfirmasi_password) {
                 $data['password'] = md5($password_baru);
-            } else {
-                $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
-                redirect(base_url('admin/profile'));
-            }
+             } else {
+                 $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama dan password minimal 8 karakter');
+                 redirect(base_url('admin/profile'));
+             }
+         }
+        } else {
+         $this->session->set_flashdata('message', 'Password lama tidak sesuai');
+         redirect(base_url('admin/profile'));
         }
-        
         $this->session->set_userdata($data);
         $update_result = $this->m_model->update('user', $data, array('id' => $this->session->userdata('id')));
         redirect(base_url('admin/profile'));

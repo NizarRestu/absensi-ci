@@ -100,7 +100,7 @@ $error_email= $this->session->flashdata('error_email');
                 title: 'Kesalahan!!',
                 text: "Password harus memiliki minimal 8 karakter!!",
                 showConfirmButton: false,
-                timer: 2000
+                timer: 3000
             });
         }
 
@@ -110,7 +110,7 @@ $error_email= $this->session->flashdata('error_email');
                 title: 'Kesalahan!!',
                 text: "Email sudah digunakan tolong gunakan email yang lain",
                 showConfirmButton: false,
-                timer: 2000
+                timer: 3000
             });
     }
 </script>
