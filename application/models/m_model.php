@@ -173,11 +173,11 @@ class M_model extends CI_Model
         $this->load->database();
         $end_date = date('Y-m-d');
         $start_date = date('Y-m-d', strtotime('-7 days', strtotime($end_date)));        
-        $query = $this->db->select('date, kegiatan,id_karyawan, jam_masuk, jam_pulang, keterangan_izin, status, COUNT(*) AS total_absences')
+        $query = $this->db->select('date,id, kegiatan,id_karyawan, jam_masuk, jam_pulang, keterangan_izin, status, COUNT(*) AS total_absences')
                           ->from('absensi')
                           ->where('date >=', $start_date)
                           ->where('date <=', $end_date)
-                          ->group_by('date, id_karyawan, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status')
+                          ->group_by('date, id_karyawan, kegiatan, jam_masuk, jam_pulang, keterangan_izin, status,id')
                           ->get();
         return $query->result_array();
     }

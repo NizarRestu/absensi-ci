@@ -139,6 +139,179 @@ class Admin extends CI_Controller {
         $data['absen'] = $this-> m_model->get_data('absensi')->num_rows();
 		$this->load->view('pages/admin/dashboard',$data);
 	}
+    // function hapus absensi
+    public function  hapus_bulanan($id) {
+        $this -> m_model->delete('absensi' , 'id' , $id);
+        redirect(base_url('admin/rekap_bulanan'));
+    }
+    public function  hapus_harian($id) {
+        $this -> m_model->delete('absensi' , 'id' , $id);
+        redirect(base_url('admin/rekap_harian'));
+    }
+    public function  hapus_mingguan($id) {
+        $this -> m_model->delete('absensi' , 'id' , $id);
+        redirect(base_url('admin/rekap_mingguan'));
+    }
+    public function  hapus_tahunan($id) {
+        $this -> m_model->delete('absensi' , 'id' , $id);
+        redirect(base_url('admin/rekap_tahunan'));
+    }
+     //function tampilan ubah absen
+     public function ubah_absen_bulanan($id)
+     {
+         $data['absen'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
+         $this->load->view('pages/admin/update_absen_bulanan',$data);
+     }
+     public function ubah_absen_harian($id)
+     {
+         $data['absen'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
+         $this->load->view('pages/admin/update_absen_hari',$data);
+     }
+     public function ubah_absen_mingguan($id)
+     {
+         $data['absen'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
+         $this->load->view('pages/admin/update_absen_mingguan',$data);
+     }
+     public function ubah_absen_tahunan($id)
+     {
+         $data['absen'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
+         $this->load->view('pages/admin/update_absen_tahunan',$data);
+     }
+       //function tampilan izin
+    public function ubah_izin_bulanan($id)
+	{
+        $data['izin'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
+		$this->load->view('pages/admin/update_izin_bulanan',$data);
+	}
+    public function ubah_izin_harian($id)
+	{
+        $data['izin'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
+		$this->load->view('pages/admin/update_izin_harian',$data);
+	}
+    public function ubah_izin_mingguan($id)
+	{
+        $data['izin'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
+		$this->load->view('pages/admin/update_izin_mingguan',$data);
+	}
+    public function ubah_izin_tahunan($id)
+	{
+        $data['izin'] = $this-> m_model->get_by_id('absensi' , 'id', $id)->result();
+		$this->load->view('pages/admin/update_izin_tahunan',$data);
+	}
+     //function aksi ubah absen
+     public function aksi_update_absen_bulanan()
+     {
+         $data =  [
+             'kegiatan' => $this->input->post('kegiatan'),
+         ];
+         $eksekusi = $this->m_model->update('absensi', $data, array('id'=>$this->input->post('id')));
+         if($eksekusi) {
+             $this->session->set_flashdata('sukses' , 'berhasil');
+             redirect(base_url('admin/rekap_bulanan'));
+         } else {
+             $this->session->set_flashdata('error' , 'gagal...');
+             redirect(base_url('admin/ubah_absen_bulanan/'.$this->input->post('id')));
+         }
+     }
+     public function aksi_update_absen_harian()
+     {
+         $data =  [
+             'kegiatan' => $this->input->post('kegiatan'),
+         ];
+         $eksekusi = $this->m_model->update('absensi', $data, array('id'=>$this->input->post('id')));
+         if($eksekusi) {
+             $this->session->set_flashdata('sukses' , 'berhasil');
+             redirect(base_url('admin/rekap_harian'));
+         } else {
+             $this->session->set_flashdata('error' , 'gagal...');
+             redirect(base_url('admin/ubah_absen_harian/'.$this->input->post('id')));
+         }
+     }
+     public function aksi_update_absen_mingguan()
+     {
+         $data =  [
+             'kegiatan' => $this->input->post('kegiatan'),
+         ];
+         $eksekusi = $this->m_model->update('absensi', $data, array('id'=>$this->input->post('id')));
+         if($eksekusi) {
+             $this->session->set_flashdata('sukses' , 'berhasil');
+             redirect(base_url('admin/rekap_mingguan'));
+         } else {
+             $this->session->set_flashdata('error' , 'gagal...');
+             redirect(base_url('admin/ubah_absen_mingguan/'.$this->input->post('id')));
+         }
+     }
+     public function aksi_update_absen_tahunan()
+     {
+         $data =  [
+             'kegiatan' => $this->input->post('kegiatan'),
+         ];
+         $eksekusi = $this->m_model->update('absensi', $data, array('id'=>$this->input->post('id')));
+         if($eksekusi) {
+             $this->session->set_flashdata('sukses' , 'berhasil');
+             redirect(base_url('admin/rekap_tahunan'));
+         } else {
+             $this->session->set_flashdata('error' , 'gagal...');
+             redirect(base_url('admin/ubah_absen_tahunan/'.$this->input->post('id')));
+         }
+     }
+     //function aksi ubah izin
+    public function aksi_update_izin_bulanan()
+    {
+        $data =  [
+            'keterangan_izin' => $this->input->post('izin'),
+        ];
+        $eksekusi = $this->m_model->update('absensi', $data, array('id'=>$this->input->post('id')));
+        if($eksekusi) {
+            $this->session->set_flashdata('sukses' , 'berhasil');
+            redirect(base_url('admin/rekap_bulanan'));
+        } else {
+            $this->session->set_flashdata('error' , 'gagal...');
+            redirect(base_url('admin/ubah_izin_bulanan/'.$this->input->post('id')));
+        }
+    }
+    public function aksi_update_izin_harian()
+    {
+        $data =  [
+            'keterangan_izin' => $this->input->post('izin'),
+        ];
+        $eksekusi = $this->m_model->update('absensi', $data, array('id'=>$this->input->post('id')));
+        if($eksekusi) {
+            $this->session->set_flashdata('sukses' , 'berhasil');
+            redirect(base_url('admin/rekap_harian'));
+        } else {
+            $this->session->set_flashdata('error' , 'gagal...');
+            redirect(base_url('admin/ubah_izin_harian/'.$this->input->post('id')));
+        }
+    }
+    public function aksi_update_izin_mingguan()
+    {
+        $data =  [
+            'keterangan_izin' => $this->input->post('izin'),
+        ];
+        $eksekusi = $this->m_model->update('absensi', $data, array('id'=>$this->input->post('id')));
+        if($eksekusi) {
+            $this->session->set_flashdata('sukses' , 'berhasil');
+            redirect(base_url('admin/rekap_mingguan'));
+        } else {
+            $this->session->set_flashdata('error' , 'gagal...');
+            redirect(base_url('admin/ubah_izin_mingguan/'.$this->input->post('id')));
+        }
+    }
+    public function aksi_update_izin_tahunan()
+    {
+        $data =  [
+            'keterangan_izin' => $this->input->post('izin'),
+        ];
+        $eksekusi = $this->m_model->update('absensi', $data, array('id'=>$this->input->post('id')));
+        if($eksekusi) {
+            $this->session->set_flashdata('sukses' , 'berhasil');
+            redirect(base_url('admin/rekap_tahunan'));
+        } else {
+            $this->session->set_flashdata('error' , 'gagal...');
+            redirect(base_url('admin/ubah_izin_tahunan/'.$this->input->post('id')));
+        }
+    }
     //function aksi unutk ubah profile
     public function aksi_ubah_profile()
 {

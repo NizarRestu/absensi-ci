@@ -74,6 +74,7 @@ color: #fff;
                             <th class="px-3 py-2 text-xs text-gray-500">JAM PULANG</th>
                             <th class="px-3 py-2 text-xs text-gray-500">KETERANGAN IZIN</th>
                             <th class="px-3 py-2 text-xs text-gray-500">STATUS</th>
+                            <th class="px-3 py-2 text-xs text-gray-500">AKSI</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-300">
@@ -119,6 +120,37 @@ color: #fff;
                       <?php echo $row->status?>
                       </div>
                     </td>
+                    <td class="flex  px-3 gap-3 py-4 justify-center">
+                    <div class="">
+                        <?php
+                        if($row->keterangan_izin == '-') {
+                          echo '<a href="' . base_url('admin/ubah_absen_harian/') . $row->id . '">
+                          <button class="text-blue-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                          </button>
+                      </a>';
+                        } else {
+                          echo '<a href="' . base_url('admin/ubah_izin_harian/') . $row->id . '">
+             <button class="text-blue-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
+    </button>
+                </a>';
+
+                        }
+                        ?>
+                      </div>
+                      <div class="">
+                        <button onclick="hapus(<?php echo $row->id ?>)" class="text-red-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                     </div>
+                                </td>
                         </tr>
                         <?php endforeach?>
                     </tbody>
@@ -131,6 +163,33 @@ color: #fff;
         </div>
     </main>
 </div>
+<script>
+    function hapus(id) {
+        Swal.fire({
+     title: 'Apakah Mau Dihapus?',
+     text: "data ini tidak bisa dikembalikan lagi!",
+     icon: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     cancelButtonText: 'Batal',
+     confirmButtonText: 'Ya, hapus!'
+      }).then((result) => {
+    if (result.isConfirmed) {
+    Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Data Terhapus!!',
+    showConfirmButton: false,
+    timer: 1500
+                })
+      setTimeout(() => {
+        window.location.href= "<?php echo base_url('admin/hapus_harian/') ?>" + id;
+      }, 1800);
+    }
+    })
+  }
+</script>
 </body>
 
 </html>
