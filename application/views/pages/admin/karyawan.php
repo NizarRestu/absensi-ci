@@ -86,14 +86,21 @@ color: #fff;
                       <?php echo $row->username?>
                       </div>
                     </td>
-                    <td class="px-3 py-4">
+                    <td class="flex  px-3 gap-3 py-4 justify-center">
                       <div class="text-sm text-gray-900">
                       <a href="<?php echo base_url('admin/detail_karyawan/'). $row->id?>">
                           <button class="text-blue-600">
-                              <svg class="w-6 h-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 192 512"><style>svg{fill:#075ef2}</style><path d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z"/></svg>
+                              <svg class="w-6 h-6 text-blue-600" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 192 512"><path d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z"/></svg>
                           </button>
                       </a>
                       </div>
+                      <div class="">
+                        <button onclick="hapus(<?php echo $row->id ?>)" class="text-red-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                     </div>
                     </td>
                   </tr>
                   <?php endforeach?>
@@ -107,6 +114,33 @@ color: #fff;
 
       </main>
     </div>
+    <script>
+    function hapus(id) {
+        Swal.fire({
+     title: 'Apakah Mau Dihapus?',
+     text: "data ini tidak bisa dikembalikan lagi!",
+     icon: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     cancelButtonText: 'Batal',
+     confirmButtonText: 'Ya, hapus!'
+      }).then((result) => {
+    if (result.isConfirmed) {
+    Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Data Terhapus!!',
+    showConfirmButton: false,
+    timer: 1500
+                })
+      setTimeout(() => {
+        window.location.href= "<?php echo base_url('admin/hapus_karyawan/') ?>" + id;
+      }, 1800);
+    }
+    })
+  }
+</script>
 </body>
 
 </html>

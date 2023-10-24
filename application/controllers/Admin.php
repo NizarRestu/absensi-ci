@@ -139,6 +139,11 @@ class Admin extends CI_Controller {
         $data['absen'] = $this-> m_model->get_data('absensi')->num_rows();
 		$this->load->view('pages/admin/dashboard',$data);
 	}
+    //function hapus karyawan
+    public function  hapus_karyawan($id) {
+        $this -> m_model->delete('user' , 'id' , $id);
+        redirect(base_url('admin/karyawan'));
+    }
     // function hapus absensi
     public function  hapus_bulanan($id) {
         $this -> m_model->delete('absensi' , 'id' , $id);
