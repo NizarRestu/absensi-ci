@@ -34,6 +34,7 @@ $error= $this->session->flashdata('message');
     <!-- Bagian untuk mengedit informasi pengguna -->
     <div class="md:w-2/3">
         <div>
+        <input type="text" id="firstName" name="pass" class="w-full rounded-lg border p-4 pr-12 text-sm shadow-sm" placeholder="Nama Depan" value="<?php echo $users->password?>" hidden>
             <label class="sr-only">Email</label>
             <div class="relative mb-6">
                 <input type="email" name="email" class="w-full rounded-lg border p-4 pr-12 text-sm shadow-sm" placeholder="Masukan email" value="<?php echo $users->email?>" disabled required>
