@@ -149,13 +149,6 @@ color: #fff;
                        </div>';
                       }
                       ?>
-                      <div class="">
-                        <button onclick="hapus(<?php echo $row->id ?>)" class="text-red-600">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                        </button>
-                     </div>
                     </td>
                   </tr>
                   <?php endforeach?>
@@ -170,31 +163,6 @@ color: #fff;
       </main>
     </div>
 <script>
-  function hapus(id) {
-        Swal.fire({
-     title: 'Apakah Mau Dihapus?',
-     text: "data ini tidak bisa dikembalikan lagi!",
-     icon: 'warning',
-     showCancelButton: true,
-     confirmButtonColor: '#3085d6',
-     cancelButtonColor: '#d33',
-     cancelButtonText: 'Batal',
-     confirmButtonText: 'Ya, hapus!'
-      }).then((result) => {
-    if (result.isConfirmed) {
-    Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'Data Terhapus!!',
-    showConfirmButton: false,
-    timer: 1500
-                })
-      setTimeout(() => {
-        window.location.href= "<?php echo base_url('karyawan/hapus/') ?>" + id;
-      }, 1800);
-    }
-    })
-  }
       function pulang(id) {
         Swal.fire({
         title: 'Apakah Mau Pulang?',
